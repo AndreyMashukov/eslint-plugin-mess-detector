@@ -8,6 +8,7 @@ import { noEnvBranch } from "./rules/no-env-branch.js";
 import { noInlineNarration } from "./rules/no-inline-narration.js";
 import { noProcessEnvOutsideConfig } from "./rules/no-process-env-outside-config.js";
 import { noRedundantBoolReturn } from "./rules/no-redundant-bool-return.js";
+import { noRedundantOptionalChain } from "./rules/no-redundant-optional-chain.js";
 import { noSuppressionComments } from "./rules/no-suppression-comments.js";
 import { noTautologicalJSDoc } from "./rules/no-tautological-jsdoc.js";
 import { noTodo } from "./rules/no-todo.js";
@@ -25,6 +26,7 @@ const rules = {
   "no-inline-narration": noInlineNarration,
   "no-process-env-outside-config": noProcessEnvOutsideConfig,
   "no-redundant-bool-return": noRedundantBoolReturn,
+  "no-redundant-optional-chain": noRedundantOptionalChain,
   "no-suppression-comments": noSuppressionComments,
   "no-tautological-jsdoc": noTautologicalJSDoc,
   "no-todo": noTodo,
@@ -44,7 +46,10 @@ const RECOMMENDED_RULE_NAMES: readonly string[] = [
   "no-todo",
   "no-type-only-assertion",
 ];
-const TYPED_ONLY_RULE_NAMES: readonly string[] = ["no-dead-nullish-guard"];
+const TYPED_ONLY_RULE_NAMES: readonly string[] = [
+  "no-dead-nullish-guard",
+  "no-redundant-optional-chain",
+];
 
 function toRuleMap(names: readonly string[]): Record<string, TSESLint.Linter.RuleEntry> {
   const out: Record<string, TSESLint.Linter.RuleEntry> = {};
