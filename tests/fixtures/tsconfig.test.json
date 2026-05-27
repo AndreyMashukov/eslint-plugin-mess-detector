@@ -10,5 +10,5 @@
     "skipLibCheck": true,
     "isolatedModules": true
   },
-  "include": ["./**/*.ts"]
+  "include": ["file.ts", "**/*.ts"]
 }

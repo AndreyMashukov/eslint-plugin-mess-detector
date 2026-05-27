@@ -2,6 +2,7 @@ import type { TSESLint } from "@typescript-eslint/utils";
 
 import { noBanalErrorWrap } from "./rules/no-banal-error-wrap.js";
 import { noCatchRethrowBanal } from "./rules/no-catch-rethrow-banal.js";
+import { noDeadNullishGuard } from "./rules/no-dead-nullish-guard.js";
 import { noDirectDateNow } from "./rules/no-direct-date-now.js";
 import { noEnvBranch } from "./rules/no-env-branch.js";
 import { noInlineNarration } from "./rules/no-inline-narration.js";
@@ -18,6 +19,7 @@ const PLUGIN_VERSION = "0.1.0";
 const rules = {
   "no-banal-error-wrap": noBanalErrorWrap,
   "no-catch-rethrow-banal": noCatchRethrowBanal,
+  "no-dead-nullish-guard": noDeadNullishGuard,
   "no-direct-date-now": noDirectDateNow,
   "no-env-branch": noEnvBranch,
   "no-inline-narration": noInlineNarration,
@@ -42,7 +44,7 @@ const RECOMMENDED_RULE_NAMES: readonly string[] = [
   "no-todo",
   "no-type-only-assertion",
 ];
-const TYPED_ONLY_RULE_NAMES: readonly string[] = [];
+const TYPED_ONLY_RULE_NAMES: readonly string[] = ["no-dead-nullish-guard"];
 
 function toRuleMap(names: readonly string[]): Record<string, TSESLint.Linter.RuleEntry> {
   const out: Record<string, TSESLint.Linter.RuleEntry> = {};
