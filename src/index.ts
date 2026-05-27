@@ -4,6 +4,7 @@ import { noDirectDateNow } from "./rules/no-direct-date-now.js";
 import { noEnvBranch } from "./rules/no-env-branch.js";
 import { noInlineNarration } from "./rules/no-inline-narration.js";
 import { noProcessEnvOutsideConfig } from "./rules/no-process-env-outside-config.js";
+import { noRedundantBoolReturn } from "./rules/no-redundant-bool-return.js";
 import { noSuppressionComments } from "./rules/no-suppression-comments.js";
 import { noTodo } from "./rules/no-todo.js";
 
@@ -15,6 +16,7 @@ const rules = {
   "no-env-branch": noEnvBranch,
   "no-inline-narration": noInlineNarration,
   "no-process-env-outside-config": noProcessEnvOutsideConfig,
+  "no-redundant-bool-return": noRedundantBoolReturn,
   "no-suppression-comments": noSuppressionComments,
   "no-todo": noTodo,
 } as const satisfies Record<string, TSESLint.RuleModule<string, readonly unknown[]>>;
@@ -24,6 +26,7 @@ const RECOMMENDED_RULE_NAMES: readonly string[] = [
   "no-env-branch",
   "no-inline-narration",
   "no-process-env-outside-config",
+  "no-redundant-bool-return",
   "no-suppression-comments",
   "no-todo",
 ];
