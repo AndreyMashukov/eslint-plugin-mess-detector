@@ -60,7 +60,7 @@ function toRuleMap(names: readonly string[]): Record<string, TSESLint.Linter.Rul
 }
 
 const meta = {
-  name: "eslint-plugin-mess-detector",
+  name: "@amashukov/eslint-plugin-mess-detector",
   version: PLUGIN_VERSION,
 } as const;
 

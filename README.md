@@ -1,9 +1,9 @@
-# eslint-plugin-mess-detector
+# @amashukov/eslint-plugin-mess-detector
 
 [![CI](https://img.shields.io/github/actions/workflow/status/AndreyMashukov/eslint-plugin-mess-detector/ci.yml?branch=main&label=CI)](https://github.com/AndreyMashukov/eslint-plugin-mess-detector/actions)
-[![npm](https://img.shields.io/npm/v/eslint-plugin-mess-detector)](https://www.npmjs.com/package/eslint-plugin-mess-detector)
-[![License](https://img.shields.io/npm/l/eslint-plugin-mess-detector)](LICENSE)
-[![Node](https://img.shields.io/node/v/eslint-plugin-mess-detector)](package.json)
+[![npm](https://img.shields.io/npm/v/@amashukov/eslint-plugin-mess-detector)](https://www.npmjs.com/package/@amashukov/eslint-plugin-mess-detector)
+[![License](https://img.shields.io/npm/l/@amashukov/eslint-plugin-mess-detector)](LICENSE)
+[![Node](https://img.shields.io/node/v/@amashukov/eslint-plugin-mess-detector)](package.json)
 
 ESLint plugin that **fails the build** on the low-signal patterns that bloat a TypeScript / JavaScript codebase: inline narration, suppression directives, defensive nullish guards, tautological JSDoc, banal `throw new Error(...)` wrappers, runtime environment branching, scattered `process.env` reads, direct `Date.now()`, type-only test assertions, and `TODO` / `FIXME` markers.
 
@@ -30,7 +30,7 @@ This plugin is a single hard gate that flags every one of these in one pass. It 
 ## Install
 
 ```bash
-npm install --save-dev eslint-plugin-mess-detector
+npm install --save-dev @amashukov/eslint-plugin-mess-detector
 ```
 
 Requires ESLint v9+ and Node 22+. For the type-aware rules (`no-dead-nullish-guard`, `no-redundant-optional-chain`) you also need `@typescript-eslint/parser` with `parserOptions.project` set.
@@ -43,7 +43,7 @@ Requires ESLint v9+ and Node 22+. For the type-aware rules (`no-dead-nullish-gua
 
 ```js
 // eslint.config.js
-import mess from "eslint-plugin-mess-detector";
+import mess from "@amashukov/eslint-plugin-mess-detector";
 
 export default [
   mess.configs.recommended,
@@ -56,7 +56,7 @@ This enables the 11 non-type-aware rules.
 
 ```js
 // eslint.config.js
-import mess from "eslint-plugin-mess-detector";
+import mess from "@amashukov/eslint-plugin-mess-detector";
 import tseslint from "typescript-eslint";
 
 export default [
