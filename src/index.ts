@@ -1,6 +1,7 @@
 import type { TSESLint } from "@typescript-eslint/utils";
 
 import { noInlineNarration } from "./rules/no-inline-narration.js";
+import { noProcessEnvOutsideConfig } from "./rules/no-process-env-outside-config.js";
 import { noSuppressionComments } from "./rules/no-suppression-comments.js";
 import { noTodo } from "./rules/no-todo.js";
 
@@ -9,12 +10,14 @@ const PLUGIN_VERSION = "0.1.0";
 
 const rules = {
   "no-inline-narration": noInlineNarration,
+  "no-process-env-outside-config": noProcessEnvOutsideConfig,
   "no-suppression-comments": noSuppressionComments,
   "no-todo": noTodo,
 } as const satisfies Record<string, TSESLint.RuleModule<string, readonly unknown[]>>;
 
 const RECOMMENDED_RULE_NAMES: readonly string[] = [
   "no-inline-narration",
+  "no-process-env-outside-config",
   "no-suppression-comments",
   "no-todo",
 ];
