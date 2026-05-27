@@ -1,6 +1,6 @@
 {
   "name": "@amashukov/eslint-plugin-mess-detector",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ESLint plugin that fails the build on low-signal code patterns: inline narration, suppression directives, defensive nullish guards, tautological JSDoc, banal error wrappers, env branching, direct Date.now, type-only test assertions, TODO markers.",
   "keywords": [
     "eslint",

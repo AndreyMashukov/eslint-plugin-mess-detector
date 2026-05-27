@@ -37,6 +37,57 @@ Requires ESLint v9+ and Node 22+. For the type-aware rules (`no-dead-nullish-gua
 
 ---
 
+## Prerequisites — parsers
+
+ESLint parses every file into an AST **before** any plugin rule runs. For source that is not plain JavaScript, the host project must register the matching parser in flat config — otherwise lint exits with `Parsing error: Unexpected token` and the plugin never gets a chance to inspect the code. This is the standard ESLint contract; mess-detector follows it just like every other plugin in the ecosystem.
+
+The three common setups:
+
+**Plain TypeScript.** Install `@typescript-eslint/parser` and register it for `.ts` files:
+
+```js
+import mess from "@amashukov/eslint-plugin-mess-detector";
+import tsParser from "@typescript-eslint/parser";
+
+export default [
+  { files: ["**/*.ts"], languageOptions: { parser: tsParser } },
+  { files: ["**/*.ts"], plugins: { "mess-detector": mess }, rules: mess.configs.recommended.rules },
+];
+```
+
+**Vue single-file components.** Install `vue-eslint-parser` (which delegates `<script lang="ts">` blocks to `@typescript-eslint/parser`):
+
+```js
+import mess from "@amashukov/eslint-plugin-mess-detector";
+import vueParser from "vue-eslint-parser";
+import tsParser from "@typescript-eslint/parser";
+
+export default [
+  {
+    files: ["**/*.vue"],
+    languageOptions: { parser: vueParser, parserOptions: { parser: tsParser } },
+  },
+  { plugins: { "mess-detector": mess }, rules: mess.configs.recommended.rules },
+];
+```
+
+**Nuxt.** Add `@nuxt/eslint` to the `modules` list in `nuxt.config.ts`; `nuxt prepare` then emits `.nuxt/eslint.config.mjs` with TS + Vue parsers already wired. Wrap your config with `withNuxt(...)`:
+
+```js
+import mess from "@amashukov/eslint-plugin-mess-detector";
+import withNuxt from "./.nuxt/eslint.config.mjs";
+
+export default withNuxt({
+  files: ["**/*.{js,mjs,cjs,ts,vue}"],
+  plugins: { "mess-detector": mess },
+  rules: mess.configs.recommended.rules,
+});
+```
+
+If `yarn lint` reports `Parsing error` from any rule, the fix is a missing parser, not a plugin bug.
+
+---
+
 ## Usage (flat config, ESLint v9)
 
 ### Plain (no type information)
