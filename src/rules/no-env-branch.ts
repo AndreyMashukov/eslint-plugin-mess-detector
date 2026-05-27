@@ -41,13 +41,10 @@ function isNodeEnvAccess(node: TSESTree.Node): boolean {
     return false;
   }
   const envProp = inner.property;
-  const isEnvProp =
+  return (
     (envProp.type === AST_NODE_TYPES.Identifier && envProp.name === "env") ||
-    (envProp.type === AST_NODE_TYPES.Literal && envProp.value === "env");
-  if (!isEnvProp) {
-    return false;
-  }
-  return true;
+    (envProp.type === AST_NODE_TYPES.Literal && envProp.value === "env")
+  );
 }
 
 export const noEnvBranch = createRule<[], MessageIds>({

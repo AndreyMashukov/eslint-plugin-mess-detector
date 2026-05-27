@@ -130,11 +130,8 @@ function exportedName(node: TSESTree.Node): string | null {
       return decl.id?.name ?? null;
     }
     if (decl.type === AST_NODE_TYPES.VariableDeclaration) {
-      const first = decl.declarations[0];
-      if (first === undefined) {
-        return null;
-      }
-      if (first.id.type === AST_NODE_TYPES.Identifier) {
+      const first = decl.declarations.at(0);
+      if (first !== undefined && first.id.type === AST_NODE_TYPES.Identifier) {
         return first.id.name;
       }
     }

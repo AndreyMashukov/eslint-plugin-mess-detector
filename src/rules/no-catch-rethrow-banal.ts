@@ -7,7 +7,7 @@ type MessageIds = "catchRethrow";
 
 function caughtBindingName(node: TSESTree.CatchClause): string | null {
   const param = node.param;
-  if (param === null || param === undefined) {
+  if (param === null) {
     return null;
   }
   if (param.type !== AST_NODE_TYPES.Identifier) {

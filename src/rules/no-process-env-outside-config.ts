@@ -18,14 +18,10 @@ function isProcessIdent(node: TSESTree.Expression | TSESTree.PrivateIdentifier):
 }
 
 function isEnvProperty(node: TSESTree.MemberExpression): boolean {
-  if (node.computed) {
-    const prop = node.property;
-    if (prop.type === AST_NODE_TYPES.Literal && prop.value === "env") {
-      return true;
-    }
-    return false;
-  }
   const prop = node.property;
+  if (node.computed) {
+    return prop.type === AST_NODE_TYPES.Literal && prop.value === "env";
+  }
   return prop.type === AST_NODE_TYPES.Identifier && prop.name === "env";
 }
 

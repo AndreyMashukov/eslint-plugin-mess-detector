@@ -51,9 +51,6 @@ export const noRedundantOptionalChain = createRule<[], MessageIds>({
       reportNode: TSESTree.Node,
     ): void {
       const tsNode = services!.esTreeNodeToTSNodeMap.get(receiver);
-      if (tsNode === undefined) {
-        return;
-      }
       const type = checker.getTypeAtLocation(tsNode);
       if (typeAdmitsNullish(type)) {
         return;

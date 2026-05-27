@@ -13,7 +13,7 @@ function returnedBool(stmt: TSESTree.Statement | undefined): boolean | null {
     return null;
   }
   const arg = stmt.argument;
-  if (arg === null || arg === undefined) {
+  if (arg === null) {
     return null;
   }
   if (arg.type !== AST_NODE_TYPES.Literal) {
@@ -55,7 +55,7 @@ export const noRedundantBoolReturn = createRule<[], MessageIds>({
         return;
       }
       let altBool: boolean | null = null;
-      if (node.alternate !== null && node.alternate !== undefined) {
+      if (node.alternate !== null) {
         const alt = firstStatementOfBranch(node.alternate);
         altBool = returnedBool(alt);
       } else {

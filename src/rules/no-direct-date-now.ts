@@ -32,13 +32,10 @@ function isCall(node: TSESTree.CallExpression, objectName: string, methodName: s
   ) {
     return false;
   }
-  if (
-    callee.property.type !== AST_NODE_TYPES.Identifier ||
-    callee.property.name !== methodName
-  ) {
-    return false;
-  }
-  return true;
+  return (
+    callee.property.type === AST_NODE_TYPES.Identifier &&
+    callee.property.name === methodName
+  );
 }
 
 function isNewDate(node: TSESTree.NewExpression): boolean {

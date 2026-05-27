@@ -51,7 +51,7 @@ function isBanalTemplate(node: TSESTree.Node): boolean {
     if (node.quasis.length === 1) {
       const q = node.quasis[0];
       if (q !== undefined) {
-        return BANAL_RE.test(q.value.cooked);
+        return BANAL_RE.test(q.value.cooked ?? "");
       }
     }
     return false;
@@ -64,10 +64,10 @@ function isBanalTemplate(node: TSESTree.Node): boolean {
   if (first === undefined || second === undefined) {
     return false;
   }
-  if (!BANAL_RE.test(first.value.cooked)) {
+  if (!BANAL_RE.test(first.value.cooked ?? "")) {
     return false;
   }
-  const trailing = second.value.cooked.trim();
+  const trailing = (second.value.cooked ?? "").trim();
   if (trailing !== "" && trailing !== ".") {
     return false;
   }
@@ -81,13 +81,10 @@ function isBanalTemplate(node: TSESTree.Node): boolean {
   if (expr.computed) {
     return false;
   }
-  if (
-    expr.property.type !== AST_NODE_TYPES.Identifier ||
-    expr.property.name !== "message"
-  ) {
-    return false;
-  }
-  return true;
+  return (
+    expr.property.type === AST_NODE_TYPES.Identifier &&
+    expr.property.name === "message"
+  );
 }
 
 export const noBanalErrorWrap = createRule<[], MessageIds>({

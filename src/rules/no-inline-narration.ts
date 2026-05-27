@@ -13,19 +13,13 @@ interface BodyRange {
 
 function isSuppressionLike(value: string): boolean {
   const trimmed = value.replace(/^[!/*\s]+/, "");
-  if (/^eslint-(disable|enable)\b/i.test(trimmed)) {
-    return true;
-  }
-  if (/^@ts-(ignore|expect-error|nocheck|check)\b/.test(trimmed)) {
-    return true;
-  }
-  if (/^biome-ignore\b/i.test(trimmed) || /^prettier-ignore\b/i.test(trimmed)) {
-    return true;
-  }
-  if (/^(TODO|FIXME|XXX|HACK)\b/i.test(trimmed)) {
-    return true;
-  }
-  return false;
+  return (
+    /^eslint-(disable|enable)\b/i.test(trimmed) ||
+    /^@ts-(ignore|expect-error|nocheck|check)\b/.test(trimmed) ||
+    /^biome-ignore\b/i.test(trimmed) ||
+    /^prettier-ignore\b/i.test(trimmed) ||
+    /^(TODO|FIXME|XXX|HACK)\b/i.test(trimmed)
+  );
 }
 
 function isInnerDeclaration(node: TSESTree.Node | undefined): boolean {

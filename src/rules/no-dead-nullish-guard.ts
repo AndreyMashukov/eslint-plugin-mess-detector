@@ -12,11 +12,7 @@ function isNullLiteral(node: TSESTree.Node): boolean {
   return node.type === AST_NODE_TYPES.Literal && node.value === null;
 }
 
-function isUndefinedIdentifier(
-  node: TSESTree.Node,
-  context: ReturnType<typeof createRule.prototype>,
-): boolean {
-  void context;
+function isUndefinedIdentifier(node: TSESTree.Node): boolean {
   return node.type === AST_NODE_TYPES.Identifier && node.name === "undefined";
 }
 
@@ -64,26 +60,20 @@ export const noDeadNullishGuard = createRule<[], MessageIds>({
       if (!STRICT_OPS.has(node.operator)) {
         return;
       }
-      let target: TSESTree.Expression | null = null;
+      let target: TSESTree.Expression;
       const left = node.left;
       const right = node.right;
       if (left.type === AST_NODE_TYPES.PrivateIdentifier) {
         return;
       }
-      if (isNullLiteral(left) || isUndefinedIdentifier(left, context)) {
+      if (isNullLiteral(left) || isUndefinedIdentifier(left)) {
         target = right;
-      } else if (isNullLiteral(right) || isUndefinedIdentifier(right, context)) {
+      } else if (isNullLiteral(right) || isUndefinedIdentifier(right)) {
         target = left;
       } else {
         return;
       }
-      if (target === null) {
-        return;
-      }
       const tsNode = services!.esTreeNodeToTSNodeMap.get(target);
-      if (tsNode === undefined) {
-        return;
-      }
       const type = checker.getTypeAtLocation(tsNode);
       if (typeAdmitsNullish(type)) {
         return;
