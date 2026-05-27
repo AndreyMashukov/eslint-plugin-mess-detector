@@ -1,5 +1,6 @@
 import type { TSESLint } from "@typescript-eslint/utils";
 
+import { noEnvBranch } from "./rules/no-env-branch.js";
 import { noInlineNarration } from "./rules/no-inline-narration.js";
 import { noProcessEnvOutsideConfig } from "./rules/no-process-env-outside-config.js";
 import { noSuppressionComments } from "./rules/no-suppression-comments.js";
@@ -9,6 +10,7 @@ const PLUGIN_NAME = "mess-detector";
 const PLUGIN_VERSION = "0.1.0";
 
 const rules = {
+  "no-env-branch": noEnvBranch,
   "no-inline-narration": noInlineNarration,
   "no-process-env-outside-config": noProcessEnvOutsideConfig,
   "no-suppression-comments": noSuppressionComments,
@@ -16,6 +18,7 @@ const rules = {
 } as const satisfies Record<string, TSESLint.RuleModule<string, readonly unknown[]>>;
 
 const RECOMMENDED_RULE_NAMES: readonly string[] = [
+  "no-env-branch",
   "no-inline-narration",
   "no-process-env-outside-config",
   "no-suppression-comments",
