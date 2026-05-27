@@ -1,15 +1,20 @@
 import type { TSESLint } from "@typescript-eslint/utils";
 
+import { noSuppressionComments } from "./rules/no-suppression-comments.js";
 import { noTodo } from "./rules/no-todo.js";
 
 const PLUGIN_NAME = "mess-detector";
 const PLUGIN_VERSION = "0.1.0";
 
 const rules = {
+  "no-suppression-comments": noSuppressionComments,
   "no-todo": noTodo,
 } as const satisfies Record<string, TSESLint.RuleModule<string, readonly unknown[]>>;
 
-const RECOMMENDED_RULE_NAMES: readonly string[] = ["no-todo"];
+const RECOMMENDED_RULE_NAMES: readonly string[] = [
+  "no-suppression-comments",
+  "no-todo",
+];
 const TYPED_ONLY_RULE_NAMES: readonly string[] = [];
 
 function toRuleMap(names: readonly string[]): Record<string, TSESLint.Linter.RuleEntry> {
