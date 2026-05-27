@@ -8,6 +8,7 @@ import { noInlineNarration } from "./rules/no-inline-narration.js";
 import { noProcessEnvOutsideConfig } from "./rules/no-process-env-outside-config.js";
 import { noRedundantBoolReturn } from "./rules/no-redundant-bool-return.js";
 import { noSuppressionComments } from "./rules/no-suppression-comments.js";
+import { noTautologicalJSDoc } from "./rules/no-tautological-jsdoc.js";
 import { noTodo } from "./rules/no-todo.js";
 import { noTypeOnlyAssertion } from "./rules/no-type-only-assertion.js";
 
@@ -23,6 +24,7 @@ const rules = {
   "no-process-env-outside-config": noProcessEnvOutsideConfig,
   "no-redundant-bool-return": noRedundantBoolReturn,
   "no-suppression-comments": noSuppressionComments,
+  "no-tautological-jsdoc": noTautologicalJSDoc,
   "no-todo": noTodo,
   "no-type-only-assertion": noTypeOnlyAssertion,
 } as const satisfies Record<string, TSESLint.RuleModule<string, readonly unknown[]>>;
@@ -36,6 +38,7 @@ const RECOMMENDED_RULE_NAMES: readonly string[] = [
   "no-process-env-outside-config",
   "no-redundant-bool-return",
   "no-suppression-comments",
+  "no-tautological-jsdoc",
   "no-todo",
   "no-type-only-assertion",
 ];
