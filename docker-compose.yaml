@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    image: eslint-plugin-mess-detector:dev
+    working_dir: /app
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    command: sh
+    tty: true
+    stdin_open: true
+
+volumes:
+  node_modules:
