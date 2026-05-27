@@ -9,6 +9,7 @@ import { noProcessEnvOutsideConfig } from "./rules/no-process-env-outside-config
 import { noRedundantBoolReturn } from "./rules/no-redundant-bool-return.js";
 import { noSuppressionComments } from "./rules/no-suppression-comments.js";
 import { noTodo } from "./rules/no-todo.js";
+import { noTypeOnlyAssertion } from "./rules/no-type-only-assertion.js";
 
 const PLUGIN_NAME = "mess-detector";
 const PLUGIN_VERSION = "0.1.0";
@@ -23,6 +24,7 @@ const rules = {
   "no-redundant-bool-return": noRedundantBoolReturn,
   "no-suppression-comments": noSuppressionComments,
   "no-todo": noTodo,
+  "no-type-only-assertion": noTypeOnlyAssertion,
 } as const satisfies Record<string, TSESLint.RuleModule<string, readonly unknown[]>>;
 
 const RECOMMENDED_RULE_NAMES: readonly string[] = [
@@ -35,6 +37,7 @@ const RECOMMENDED_RULE_NAMES: readonly string[] = [
   "no-redundant-bool-return",
   "no-suppression-comments",
   "no-todo",
+  "no-type-only-assertion",
 ];
 const TYPED_ONLY_RULE_NAMES: readonly string[] = [];
 
