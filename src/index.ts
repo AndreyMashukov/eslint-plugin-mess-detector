@@ -1,6 +1,7 @@
 import type { TSESLint } from "@typescript-eslint/utils";
 
 import { noBanalErrorWrap } from "./rules/no-banal-error-wrap.js";
+import { noCatchRethrowBanal } from "./rules/no-catch-rethrow-banal.js";
 import { noDirectDateNow } from "./rules/no-direct-date-now.js";
 import { noEnvBranch } from "./rules/no-env-branch.js";
 import { noInlineNarration } from "./rules/no-inline-narration.js";
@@ -14,6 +15,7 @@ const PLUGIN_VERSION = "0.1.0";
 
 const rules = {
   "no-banal-error-wrap": noBanalErrorWrap,
+  "no-catch-rethrow-banal": noCatchRethrowBanal,
   "no-direct-date-now": noDirectDateNow,
   "no-env-branch": noEnvBranch,
   "no-inline-narration": noInlineNarration,
@@ -25,6 +27,7 @@ const rules = {
 
 const RECOMMENDED_RULE_NAMES: readonly string[] = [
   "no-banal-error-wrap",
+  "no-catch-rethrow-banal",
   "no-direct-date-now",
   "no-env-branch",
   "no-inline-narration",
