@@ -22,10 +22,7 @@ function isSuppressionLike(value: string): boolean {
   );
 }
 
-function isInnerDeclaration(node: TSESTree.Node | undefined): boolean {
-  if (node === undefined) {
-    return false;
-  }
+function isInnerDeclaration(node: TSESTree.Node): boolean {
   return (
     node.type === AST_NODE_TYPES.FunctionDeclaration ||
     node.type === AST_NODE_TYPES.VariableDeclaration ||
@@ -106,9 +103,14 @@ export const noInlineNarration = createRule<Options, MessageIds>({
             if (token !== null) {
               let node = context.sourceCode.getNodeByRangeIndex(token.range[0]);
               while (node !== null && node.range[0] !== token.range[0]) {
-                node = node.parent ?? null;
+                const { parent } = node;
+                if (parent === undefined) {
+                  node = null;
+                  break;
+                }
+                node = parent;
               }
-              if (isInnerDeclaration(node ?? undefined)) {
+              if (node !== null && isInnerDeclaration(node)) {
                 continue;
               }
             }

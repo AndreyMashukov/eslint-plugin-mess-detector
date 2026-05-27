@@ -50,8 +50,8 @@ function isBanalTemplate(node: TSESTree.Node): boolean {
   if (node.expressions.length === 0) {
     if (node.quasis.length === 1) {
       const q = node.quasis[0];
-      if (q !== undefined) {
-        return BANAL_RE.test(q.value.cooked ?? "");
+      if (q !== undefined && q.value.cooked !== null) {
+        return BANAL_RE.test(q.value.cooked);
       }
     }
     return false;
@@ -64,10 +64,13 @@ function isBanalTemplate(node: TSESTree.Node): boolean {
   if (first === undefined || second === undefined) {
     return false;
   }
-  if (!BANAL_RE.test(first.value.cooked ?? "")) {
+  if (first.value.cooked === null || second.value.cooked === null) {
     return false;
   }
-  const trailing = (second.value.cooked ?? "").trim();
+  if (!BANAL_RE.test(first.value.cooked)) {
+    return false;
+  }
+  const trailing = second.value.cooked.trim();
   if (trailing !== "" && trailing !== ".") {
     return false;
   }

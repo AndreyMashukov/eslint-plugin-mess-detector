@@ -53,7 +53,7 @@ export const noProcessEnvOutsideConfig = createRule<Options, MessageIds>({
   },
   defaultOptions: [{ allow: DEFAULT_ALLOW }],
   create(context, [opts]) {
-    const allow = opts.allow ?? DEFAULT_ALLOW;
+    const { allow = DEFAULT_ALLOW } = opts;
     const filename = context.filename;
     if (matchesGlob(filename, allow)) {
       return {};

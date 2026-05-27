@@ -127,7 +127,7 @@ function exportedName(node: TSESTree.Node): string | null {
       return null;
     }
     if (decl.type === AST_NODE_TYPES.FunctionDeclaration) {
-      return decl.id?.name ?? null;
+      return decl.id === null ? null : decl.id.name;
     }
     if (decl.type === AST_NODE_TYPES.VariableDeclaration) {
       const first = decl.declarations.at(0);
@@ -136,16 +136,16 @@ function exportedName(node: TSESTree.Node): string | null {
       }
     }
     if (decl.type === AST_NODE_TYPES.ClassDeclaration) {
-      return decl.id?.name ?? null;
+      return decl.id === null ? null : decl.id.name;
     }
   }
   if (node.type === AST_NODE_TYPES.ExportDefaultDeclaration) {
     const d = node.declaration;
     if (d.type === AST_NODE_TYPES.FunctionDeclaration) {
-      return d.id?.name ?? "default";
+      return d.id === null ? "default" : d.id.name;
     }
     if (d.type === AST_NODE_TYPES.ClassDeclaration) {
-      return d.id?.name ?? "default";
+      return d.id === null ? "default" : d.id.name;
     }
     if (d.type === AST_NODE_TYPES.Identifier) {
       return d.name;

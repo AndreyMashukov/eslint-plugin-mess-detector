@@ -143,8 +143,9 @@ This adds the two type-aware rules on top.
 | 9 | [`no-catch-rethrow-banal`](docs/rules/no-catch-rethrow-banal.md) | no | `catch (e) { throw new Error(e.message); }` |
 | 10 | [`no-type-only-assertion`](docs/rules/no-type-only-assertion.md) | no | `expect(x).toBeDefined()` / `toBeInstanceOf(...)` etc. |
 | 11 | [`no-tautological-jsdoc`](docs/rules/no-tautological-jsdoc.md) | no | JSDoc that restates the function name |
-| 12 | [`no-dead-nullish-guard`](docs/rules/no-dead-nullish-guard.md) | **yes** | `x === null` on a type that admits neither `null` nor `undefined` |
-| 13 | [`no-redundant-optional-chain`](docs/rules/no-redundant-optional-chain.md) | **yes** | `?.` on a type that admits neither `null` nor `undefined` |
+| 12 | [`no-silent-fallback`](docs/rules/no-silent-fallback.md) | no | `??`, `??=`, and `\|\|` with a literal default — silent fallbacks for missing values |
+| 13 | [`no-dead-nullish-guard`](docs/rules/no-dead-nullish-guard.md) | **yes** | `x === null` on a type that admits neither `null` nor `undefined` |
+| 14 | [`no-redundant-optional-chain`](docs/rules/no-redundant-optional-chain.md) | **yes** | `?.` on a type that admits neither `null` nor `undefined` |
 
 ---
 
@@ -152,7 +153,7 @@ This adds the two type-aware rules on top.
 
 Two flat-config presets:
 
-- `mess.configs.recommended` — rules 1–11. Works on plain ESLint without `parserOptions.project`.
+- `mess.configs.recommended` — rules 1–12. Works on plain ESLint without `parserOptions.project`.
 - `mess.configs["recommended-typed"]` — `recommended` plus the two type-aware rules. Requires `@typescript-eslint/parser` with `parserOptions.project`.
 
 ---

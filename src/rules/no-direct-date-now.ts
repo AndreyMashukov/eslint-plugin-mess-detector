@@ -73,7 +73,7 @@ export const noDirectDateNow = createRule<Options, MessageIds>({
   },
   defaultOptions: [{ allow: DEFAULT_ALLOW, ignorePerformanceNow: false }],
   create(context, [opts]) {
-    const allow = opts.allow ?? DEFAULT_ALLOW;
+    const { allow = DEFAULT_ALLOW } = opts;
     if (matchesGlob(context.filename, allow)) {
       return {};
     }

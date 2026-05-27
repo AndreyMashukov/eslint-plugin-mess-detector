@@ -90,8 +90,12 @@ export const noTypeOnlyAssertion = createRule<Options, MessageIds>({
     if (!isTestFile(context.filename)) {
       return {};
     }
-    const matchers = new Set(opts.matchers ?? DEFAULT_MATCHERS);
-    const idents = new Set(opts.expectIdentifiers ?? DEFAULT_EXPECT_IDENTIFIERS);
+    const {
+      matchers: matcherList = DEFAULT_MATCHERS,
+      expectIdentifiers: identList = DEFAULT_EXPECT_IDENTIFIERS,
+    } = opts;
+    const matchers = new Set(matcherList);
+    const idents = new Set(identList);
     return {
       CallExpression(node: TSESTree.CallExpression): void {
         if (node.callee.type !== AST_NODE_TYPES.MemberExpression) {
